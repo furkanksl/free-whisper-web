@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SEO } from "@/components/SEO";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import {
   Download,
   Github,
@@ -944,7 +944,7 @@ function App() {
                           x: indicatorPosition.x,
                           y: indicatorPosition.y,
                         }}
-                        onDragEnd={(event, info) => {
+                        onDragEnd={(_, info) => {
                           setIndicatorPosition({
                             x: info.offset.x,
                             y: info.offset.y,
