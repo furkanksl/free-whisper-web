@@ -1,0 +1,18 @@
+OG Image Template for FreeWhisper
+
+Recommended dimensions: 1200x630 pixels (Facebook/LinkedIn optimal size)
+
+The image should include:
+1. The FreeWhisper logo
+2. Tagline: "Free & Private Speech-to-Text App for macOS"
+3. Background with the app's blue/cyan gradient
+4. Visual elements showing speech-to-text functionality (e.g., waveform, microphone)
+
+Once created, save as og-image.png in the public directory.
+
+Social Media Platform Requirements:
+- Facebook/LinkedIn: 1200x630 px (ideal)
+- Twitter: 1200x675 px
+- Instagram: 1080x1080 px
+
+This image will be used for link previews when sharing your website URL on social media platforms. 
