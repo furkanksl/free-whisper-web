@@ -573,7 +573,7 @@ function App() {
                                   transform: "translate(-50%, -50%)",
                                 }}
                               >
-                                <div className="relative w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg z-40">
+                                <div className="relative w-10 h-10 rounded-full bg-gradient-to-r dark:from-blue-700 dark:to-cyan-700 from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg z-40">
                                   {i === 0 ? (
                                     <Shield
                                       className="w-5 h-5 text-white"
@@ -638,7 +638,7 @@ function App() {
                           }}
                         >
                           <motion.div
-                            className="w-[90px] h-[90px] rounded-full bg-white dark:bg-slate-900 flex items-center justify-center cursor-pointer"
+                            className="w-[92px] h-[92px] rounded-full bg-white dark:bg-slate-900 flex items-center justify-center cursor-pointer"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                           >
@@ -653,7 +653,7 @@ function App() {
                               }}
                             >
                               <Mic
-                                className="w-12 h-12 text-blue-600 dark:text-blue-400"
+                                className="w-8 h-8 text-blue-600 dark:text-blue-400"
                                 strokeWidth={1.5}
                               />
                             </motion.div>
