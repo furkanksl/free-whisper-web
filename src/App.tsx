@@ -766,7 +766,7 @@ function App() {
                         {
                           icon: Zap,
                           label: "Lightning Fast",
-                          desc: "Real-time transcription with minimal latency, perfect for meetings, interviews, lectures, and more.",
+                          desc: "Fast speech-to-text processing with excellent accuracy, perfect for meetings, interviews, lectures, and more.",
                           color: "from-blue-400 to-cyan-500",
                           bgColor:
                             "from-blue-50 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-800/20",
