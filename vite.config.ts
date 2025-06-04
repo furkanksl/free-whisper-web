@@ -13,7 +13,7 @@ export default defineConfig({
   },
   // Use the line below when deploying to production with a specific domain
   base: "https://freewhisper.furkanksl.com/",
-  server: {
+  preview: {
     allowedHosts: [
       "freewhisper.furkanksl.com",
       "apps-freewhisper-hxvokz-4a8214-191-101-15-74.traefik.me",
