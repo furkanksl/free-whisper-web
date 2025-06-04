@@ -3,6 +3,7 @@ import "./App.css";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { SEO } from "@/components/SEO";
 import {
   Download,
   Github,
@@ -63,6 +64,7 @@ function App() {
 
   return (
     <div className="min-h-screen">
+      <SEO />
       <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-b from-white to-blue-50/50 dark:from-slate-950 dark:to-blue-950/30">
         {/* Theme Toggle */}
         <div className="absolute top-6 right-6 z-20">
