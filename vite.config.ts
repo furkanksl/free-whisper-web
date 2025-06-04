@@ -11,4 +11,6 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Use the line below when deploying to production with a specific domain
+  base: "https://freewhisper.furkanksl.com/",
 });
