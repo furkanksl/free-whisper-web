@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SEO } from "@/components/SEO";
+import { useEffect, useState, useRef } from "react";
 import {
   Download,
   Github,
@@ -61,6 +62,73 @@ function App() {
     { icon: Globe, value: "20+", label: "Languages" },
     { icon: Mic, value: "<2s", label: "Response Time" },
   ];
+
+  // Track the recording indicator position between state changes
+  const [indicatorPosition, setIndicatorPosition] = useState({ x: 0, y: 0 });
+
+  // Demo state management
+  const [demoState, setDemoState] = useState("initial"); // initial, recording, transcribing, welcome
+  const [typedText, setTypedText] = useState("");
+  const fullWelcomeText =
+    "Welcome to FreeWhisper! Your audio has been transcribed successfully.";
+
+  // Handle keyboard shortcuts for the demo
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Check for Option + Backtick (`) shortcut - more comprehensive detection
+      if (
+        e.altKey &&
+        (e.key === "`" || e.key === "Dead" || e.code === "Backquote")
+      ) {
+        e.preventDefault();
+        cycleState();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [demoState]);
+
+  // Handle the typing animation for welcome message
+  useEffect(() => {
+    if (demoState === "welcome") {
+      let currentText = "";
+      let currentIndex = 0;
+
+      const typingInterval = setInterval(() => {
+        if (currentIndex < fullWelcomeText.length) {
+          currentText += fullWelcomeText[currentIndex];
+          setTypedText(currentText);
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 80); // Slightly slower typing speed for better readability
+
+      return () => clearInterval(typingInterval);
+    } else {
+      setTypedText("");
+    }
+  }, [demoState]);
+
+  // Function to cycle through demo states
+  const cycleState = () => {
+    if (demoState === "initial") {
+      setDemoState("recording");
+    } else if (demoState === "recording") {
+      setDemoState("transcribing");
+      // Automatically transition to welcome state after 1 second
+      setTimeout(() => {
+        setDemoState("welcome");
+      }, 1000);
+    } else if (demoState === "transcribing") {
+      // This branch should never be hit because of the auto-transition
+      setDemoState("welcome");
+    } else if (demoState === "welcome") {
+      // Reset to initial state
+      setDemoState("initial");
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -805,6 +873,242 @@ function App() {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Recording Indicators Showcase - NEW SECTION */}
+              <div className="max-w-5xl mx-auto mb-20 mt-40">
+                <motion.div
+                  className="text-center mb-12"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700 bg-clip-text text-transparent inline-block mb-3">
+                    Intuitive User Experience
+                  </h2>
+                  <p className="text-slate-600 dark:text-slate-300 max-w-xl mx-auto">
+                    Elegant interface with keyboard shortcuts for seamless
+                    control
+                  </p>
+                </motion.div>
+
+                {/* Interactive Demo Area */}
+                <div className="relative w-full max-w-3xl h-[400px] mx-auto bg-gradient-to-br from-slate-100 to-white dark:from-slate-900 dark:to-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-200/50 dark:border-slate-700/50">
+                  {/* Grid background */}
+                  <div className="absolute inset-0">
+                    <div className="absolute inset-0 bg-[url('/grid-pattern-dark.svg')] opacity-10 dark:opacity-20"></div>
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        backgroundImage: `
+                        linear-gradient(to right, rgba(203, 213, 225, 0.3) 0.5px, transparent 0.5px),
+                        linear-gradient(to bottom, rgba(203, 213, 225, 0.3) 0.5px, transparent 0.5px)
+                      `,
+                        backgroundSize: "20px 20px",
+                      }}
+                    ></div>
+                  </div>
+
+                  {/* State-based indicators */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    {/* State 1: Recording indicator */}
+                    <motion.div
+                      className="absolute z-30"
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{
+                        scale: demoState === "recording" ? 1 : 0,
+                        opacity: demoState === "recording" ? 1 : 0,
+                        x: 0,
+                        y: 0,
+                      }}
+                      transition={{
+                        scale: { duration: 0.3 },
+                        opacity: { duration: 0.3 },
+                      }}
+                      style={{
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      {/* Shadow effect for depth */}
+                      {/* <div className="absolute -inset-1 bg-slate-400/20 dark:bg-red-500/20 rounded-full blur-md -z-10"></div> */}
+
+                      {/* Recording indicator with pulsing dot */}
+                      <motion.div
+                        className="flex items-center px-6 py-2.5 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md rounded-full shadow-lg border border-slate-200 dark:border-slate-700 cursor-grab active:cursor-grabbing"
+                        drag={demoState === "recording"}
+                        dragMomentum={false}
+                        dragElastic={0.1}
+                        animate={{
+                          x: indicatorPosition.x,
+                          y: indicatorPosition.y,
+                        }}
+                        onDragEnd={(event, info) => {
+                          setIndicatorPosition({
+                            x: info.offset.x,
+                            y: info.offset.y,
+                          });
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        whileDrag={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <div className="h-1 w-10 bg-slate-200 dark:bg-slate-700 rounded-full absolute top-1 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+                        <div className="relative">
+                          <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                          <motion.div
+                            className="absolute inset-0 rounded-full bg-red-500"
+                            animate={{
+                              scale: [1, 1.6, 1],
+                              opacity: [0.8, 0, 0.8],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                          />
+                        </div>
+                        <span className="ml-3 text-slate-800 dark:text-white font-light select-none text-sm">
+                          Recording...
+                        </span>
+                      </motion.div>
+                    </motion.div>
+
+                    {/* State 2: Transcribing indicator */}
+                    <motion.div
+                      className="absolute z-30"
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{
+                        scale: demoState === "transcribing" ? 1 : 0,
+                        opacity: demoState === "transcribing" ? 1 : 0,
+                        x: indicatorPosition.x,
+                        y: indicatorPosition.y,
+                      }}
+                      transition={{
+                        scale: { duration: 0.3 },
+                        opacity: { duration: 0.3 },
+                      }}
+                      style={{
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      {/* Shadow effect for depth */}
+                      {/* <div className="absolute -inset-1 bg-slate-400/20 dark:bg-blue-500/20 rounded-full blur-md -z-10"></div> */}
+
+                      {/* Transcribing indicator */}
+                      <div className="relative flex items-center px-6 py-2.5 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md rounded-full shadow-lg border border-slate-200 dark:border-slate-700">
+                        <div className="h-1 w-10 bg-slate-200 dark:bg-slate-700 rounded-full absolute top-1 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+                        <div className="relative flex items-center justify-center">
+                          <svg
+                            className="w-4 h-4 text-blue-500 dark:text-blue-400 animate-spin"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                              fill="none"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                          </svg>
+                        </div>
+                        <span className="ml-3 text-slate-800 dark:text-white font-light select-none text-sm">
+                          Transcribing...
+                        </span>
+                      </div>
+                    </motion.div>
+
+                    {/* State 3: Welcome message with typing animation - directly on canvas */}
+                    <motion.div
+                      className="absolute inset-0 flex items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        opacity: demoState === "welcome" ? 1 : 0,
+                      }}
+                      transition={{
+                        opacity: { duration: 0.5 },
+                      }}
+                    >
+                      <div className="text-center px-8 max-w-2xl">
+                        <motion.p
+                          className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-slate-700 to-slate-500 dark:from-slate-100 dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent leading-relaxed"
+                          initial={{ scale: 0.9, opacity: 0 }}
+                          animate={{
+                            scale: demoState === "welcome" ? 1 : 0.9,
+                            opacity: demoState === "welcome" ? 1 : 0,
+                          }}
+                          transition={{ duration: 0.4, delay: 0.2 }}
+                        >
+                          {typedText}
+                          <motion.span
+                            className="inline-block w-1 h-8 bg-slate-500 dark:bg-slate-300 ml-1 align-middle"
+                            animate={{ opacity: [1, 0, 1] }}
+                            transition={{ duration: 1, repeat: Infinity }}
+                          />
+                        </motion.p>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Keyboard shortcut display */}
+                  <motion.div
+                    className="absolute bottom-4 left-0 right-0 text-center"
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                  >
+                    <motion.div
+                      className="inline-flex items-center px-4 py-2 bg-white/70 dark:bg-slate-800/70 text-slate-700 dark:text-slate-300 text-sm font-medium rounded-full backdrop-blur-sm gap-2 cursor-pointer"
+                      whileHover={{ scale: 1.05 }}
+                      onClick={cycleState}
+                    >
+                      <div className="flex space-x-1">
+                        <kbd className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold rounded-md border border-slate-300 dark:border-slate-600">
+                          ⌥
+                        </kbd>
+                        <kbd className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold rounded-md border border-slate-300 dark:border-slate-600">
+                          `
+                        </kbd>
+                      </div>
+                      <span>Click or use shortcut to cycle states</span>
+                    </motion.div>
+                  </motion.div>
+                </div>
+
+                {/* Caption */}
+                <motion.div
+                  className="text-center mt-8"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                >
+                  <p className="text-slate-600 dark:text-slate-400 text-sm max-w-xl mx-auto">
+                    Press{" "}
+                    <kbd className="px-1.5 py-0.5 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded">
+                      ⌥
+                    </kbd>
+                    +
+                    <kbd className="px-1.5 py-0.5 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded">
+                      `
+                    </kbd>{" "}
+                    to start recording, then again to transcribe. The recording
+                    indicator can be dragged around. All processing happens
+                    locally on your device.
+                  </p>
+                </motion.div>
               </div>
 
               {/* Stats - Minimal Bar */}
