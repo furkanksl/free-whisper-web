@@ -13,17 +13,34 @@ export default defineConfig({
   },
   // Use the line below when deploying to production with a specific domain
   base: "https://freewhisper.furkanksl.com/",
+  server: {
+    host: "0.0.0.0",
+    port: 3000,
+    strictPort: true,
+    cors: true,
+    hmr: {
+      host: "localhost",
+    },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  },
   preview: {
     host: "0.0.0.0",
     port: 3000,
     strictPort: true,
-    allowedHosts: [
-      "localhost",
-      "127.0.0.1",
-      "freewhisper.furkanksl.com",
-      "apps-freewhisper-hxvokz-4a8214-191-101-15-74.traefik.me",
-      "*.traefik.me", // Allows all subdomains of traefik.me
-    ],
-    cors: true,
+    allowedHosts: ["all"], // Allow all hosts as an array
+    cors: {
+      origin: "*", // Allow all origins
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      preflightContinue: false,
+      optionsSuccessStatus: 204,
+    },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+      "Access-Control-Allow-Headers":
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+    },
   },
 });

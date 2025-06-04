@@ -22,6 +22,7 @@ WORKDIR /app
 # Copy built application from build stage
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/package.json ./
+COPY --from=build /app/server.cjs ./
 
 # Install only production dependencies
 RUN bun install --production --frozen-lockfile
@@ -29,5 +30,5 @@ RUN bun install --production --frozen-lockfile
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Start the application using Bun to serve the static files
-CMD ["bun", "run", "vite", "preview", "--host", "0.0.0.0", "--port", "3000"] 
+# Start the application using the Express server instead of Vite preview
+CMD ["node", "server.cjs"] 
