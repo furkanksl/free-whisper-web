@@ -282,7 +282,7 @@ function App() {
 
                 {/* Main button */}
                 <a
-                  href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.5/FreeWhisper.dmg"
+                  href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.6/FreeWhisper.dmg"
                   className="relative flex items-center gap-4 bg-white dark:bg-slate-900 text-slate-900 dark:text-white px-4 py-3 rounded-2xl border border-blue-200/50 dark:border-blue-800/50 shadow-lg transition-all duration-300 group-hover:shadow-blue-500/20 dark:group-hover:shadow-cyan-500/20 cursor-pointer"
                 >
                   {/* macOS logo */}
@@ -1190,7 +1190,7 @@ function App() {
                   }}
                 >
                   <a
-                    href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.5/FreeWhisper.dmg"
+                    href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.6/FreeWhisper.dmg"
                     className="group cursor-pointer"
                   >
                     <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-[1px] rounded-full">
