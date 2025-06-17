@@ -20,6 +20,7 @@ import {
   FileText,
   Pause,
   Save,
+  VolumeX,
 } from "lucide-react";
 
 function App() {
@@ -240,7 +241,8 @@ function App() {
             >
               Transform your voice into text with unprecedented accuracy and
               complete privacy. Built on advanced AI, runs entirely on your
-              device, and costs absolutely nothing.
+              device, automatically mutes system audio during recording, and
+              costs absolutely nothing.
             </motion.p>
 
             {/* Feature Pills */}
@@ -282,7 +284,7 @@ function App() {
 
                 {/* Main button */}
                 <a
-                  href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.6/FreeWhisper.dmg"
+                  href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.7/FreeWhisper.dmg"
                   className="relative flex items-center gap-4 bg-white dark:bg-slate-900 text-slate-900 dark:text-white px-4 py-3 rounded-2xl border border-blue-200/50 dark:border-blue-800/50 shadow-lg transition-all duration-300 group-hover:shadow-blue-500/20 dark:group-hover:shadow-cyan-500/20 cursor-pointer"
                 >
                   {/* macOS logo */}
@@ -743,7 +745,7 @@ function App() {
                     </motion.div>
 
                     {/* Features cards - redesigned with staggered animation */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                       {[
                         {
                           icon: Shield,
@@ -755,13 +757,22 @@ function App() {
                           delay: 0,
                         },
                         {
+                          icon: VolumeX,
+                          label: "Smart Audio Control",
+                          desc: "Automatically mutes system audio during recording to prevent interference and ensure crystal-clear voice capture.",
+                          color: "from-purple-500 to-purple-600",
+                          bgColor:
+                            "from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20",
+                          delay: 0.1,
+                        },
+                        {
                           icon: Cpu,
                           label: "AI-Powered",
                           desc: "Advanced Whisper AI model delivers industry-leading accuracy for crystal-clear transcriptions in any environment.",
                           color: "from-cyan-500 to-cyan-600",
                           bgColor:
                             "from-cyan-50 to-cyan-100 dark:from-cyan-900/20 dark:to-cyan-800/20",
-                          delay: 0.15,
+                          delay: 0.2,
                         },
                         {
                           icon: Zap,
@@ -1190,20 +1201,20 @@ function App() {
                   }}
                 >
                   <a
-                    href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.6/FreeWhisper.dmg"
+                    href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.7/FreeWhisper.dmg"
                     className="group cursor-pointer"
                   >
                     <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-[1px] rounded-full">
                       <div className="flex items-center gap-3 bg-white dark:bg-slate-900 rounded-full px-8 py-3.5 group-hover:bg-opacity-0 group-hover:dark:bg-opacity-0 transition-all duration-300">
                         <svg
                           viewBox="0 0 24 24"
-                          className="w-6 h-6 text-blue-600 dark:text-blue-400 group-hover:text-white transition-colors duration-300"
+                          className="w-6 h-6 text-blue-600 dark:text-blue-400 dark:group-hover:text-white transition-colors duration-300"
                           fill="currentColor"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09998 22C7.78998 22.05 6.79998 20.68 5.95998 19.47C4.24998 17 2.93998 12.45 4.69998 9.39C5.56998 7.87 7.12998 6.91 8.81998 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.35 4.26 13 3.5Z" />
                         </svg>
-                        <span className="text-slate-800 dark:text-white font-medium group-hover:text-white transition-colors duration-300">
+                        <span className="text-slate-800 dark:text-white font-medium dark:group-hover:text-white transition-colors duration-300">
                           Download for macOS
                         </span>
                       </div>
