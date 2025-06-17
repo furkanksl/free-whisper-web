@@ -20,6 +20,7 @@ import {
   FileText,
   Pause,
   Save,
+  VolumeX,
 } from "lucide-react";
 
 function App() {
@@ -38,21 +39,7 @@ function App() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
-  const floatingBlobVariants = {
-    animate: {
-      x: [0, 10, -5, 0],
-      y: [0, -15, 5, 0],
-      scale: [1, 1.05, 0.98, 1],
-      rotate: [0, 1, -1, 0],
-      transition: {
-        duration: 12,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
+      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
     },
   };
 
@@ -144,47 +131,66 @@ function App() {
           {/* Main large gradient blob */}
           <motion.div
             className="absolute -top-[30%] -right-[20%] w-[80%] h-[80%] rounded-full bg-gradient-to-br from-blue-400/10 via-cyan-300/10 to-blue-500/5 dark:from-blue-500/10 dark:via-cyan-400/5 dark:to-blue-600/10 blur-3xl"
-            variants={floatingBlobVariants}
-            animate="animate"
+            animate={{
+              x: [0, 10, -5, 0],
+              y: [0, -15, 5, 0],
+              scale: [1, 1.05, 0.98, 1],
+              rotate: [0, 1, -1, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: [0.4, 0, 0.2, 1],
+            }}
           />
 
           {/* Secondary blobs */}
           <motion.div
             className="absolute -bottom-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-gradient-to-tr from-cyan-300/10 via-blue-400/5 to-cyan-200/10 dark:from-cyan-400/10 dark:via-blue-500/5 dark:to-cyan-300/10 blur-3xl"
-            variants={floatingBlobVariants}
             animate={{
-              ...floatingBlobVariants.animate,
-              transition: {
-                ...floatingBlobVariants.animate.transition,
-                delay: 2,
-              },
+              x: [0, 10, -5, 0],
+              y: [0, -15, 5, 0],
+              scale: [1, 1.05, 0.98, 1],
+              rotate: [0, 1, -1, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: [0.4, 0, 0.2, 1],
+              delay: 2,
             }}
           />
 
           {/* Accent blobs */}
           <motion.div
             className="absolute top-[20%] left-[5%] w-[20%] h-[20%] rounded-full bg-gradient-to-r from-blue-400/10 via-cyan-300/10 to-blue-500/5 dark:from-blue-500/10 dark:via-cyan-400/5 dark:to-blue-600/10 blur-2xl"
-            variants={floatingBlobVariants}
             animate={{
-              ...floatingBlobVariants.animate,
-              transition: {
-                ...floatingBlobVariants.animate.transition,
-                delay: 1,
-                duration: 8,
-              },
+              x: [0, 10, -5, 0],
+              y: [0, -15, 5, 0],
+              scale: [1, 1.05, 0.98, 1],
+              rotate: [0, 1, -1, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: [0.4, 0, 0.2, 1],
+              delay: 1,
             }}
           />
 
           <motion.div
             className="absolute bottom-[30%] right-[15%] w-[15%] h-[15%] rounded-full bg-gradient-to-l from-cyan-400/15 to-blue-300/15 dark:from-cyan-500/10 dark:to-blue-400/10 blur-2xl"
-            variants={floatingBlobVariants}
             animate={{
-              ...floatingBlobVariants.animate,
-              transition: {
-                ...floatingBlobVariants.animate.transition,
-                delay: 3,
-                duration: 10,
-              },
+              x: [0, 10, -5, 0],
+              y: [0, -15, 5, 0],
+              scale: [1, 1.05, 0.98, 1],
+              rotate: [0, 1, -1, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: [0.4, 0, 0.2, 1],
+              delay: 3,
             }}
           />
 
@@ -240,7 +246,8 @@ function App() {
             >
               Transform your voice into text with unprecedented accuracy and
               complete privacy. Built on advanced AI, runs entirely on your
-              device, and costs absolutely nothing.
+              device, automatically mutes system audio during recording, and
+              costs absolutely nothing.
             </motion.p>
 
             {/* Feature Pills */}
@@ -282,7 +289,7 @@ function App() {
 
                 {/* Main button */}
                 <a
-                  href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.6/FreeWhisper.dmg"
+                  href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.7/FreeWhisper.dmg"
                   className="relative flex items-center gap-4 bg-white dark:bg-slate-900 text-slate-900 dark:text-white px-4 py-3 rounded-2xl border border-blue-200/50 dark:border-blue-800/50 shadow-lg transition-all duration-300 group-hover:shadow-blue-500/20 dark:group-hover:shadow-cyan-500/20 cursor-pointer"
                 >
                   {/* macOS logo */}
@@ -378,18 +385,7 @@ function App() {
                     <div className="w-full md:w-1/2 relative h-[450px] mt-28">
                       {/* Background elements */}
                       <div className="absolute top-5 right-0 w-4/5 h-4/5 bg-gradient-to-br from-blue-600/70 to-cyan-600/70 rounded-3xl transform rotate-6 shadow-xl"></div>
-                      <motion.div
-                        className="absolute -bottom-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-full blur-xl"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.3, 0.5, 0.3],
-                        }}
-                        transition={{
-                          duration: 8,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
+                      <motion.div className="absolute -bottom-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-full blur-xl"></motion.div>
 
                       {/* Main card - Enhanced */}
                       <motion.div
@@ -451,7 +447,7 @@ function App() {
                                 transition={{
                                   duration: 1.5 + Math.random(),
                                   repeat: Infinity,
-                                  ease: "easeInOut",
+                                  ease: [0.4, 0, 0.2, 1],
                                   delay: i * 0.03,
                                 }}
                               />
@@ -527,18 +523,7 @@ function App() {
                     <div className="w-full md:w-1/2 h-[450px] flex items-center justify-center">
                       <div className="relative w-72 h-72">
                         {/* Background glow */}
-                        <motion.div
-                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 rounded-full bg-gradient-to-r  blur-xl"
-                          animate={{
-                            scale: [1, 1.2, 1],
-                            opacity: [0.5, 0.8, 0.5],
-                          }}
-                          transition={{
-                            duration: 8,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                        />
+                        <motion.div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 rounded-full bg-gradient-to-r  blur-xl"></motion.div>
 
                         {/* Orbiting elements - Fixed positioning with lines pointing to center */}
                         <div className="absolute inset-0 flex items-center justify-center">
@@ -622,43 +607,7 @@ function App() {
                         </div>
 
                         {/* Central element - Enhanced */}
-                        <motion.div
-                          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-2xl z-10"
-                          animate={{
-                            boxShadow: [
-                              "0 0 20px rgba(37, 99, 235, 0.3)",
-                              "0 0 40px rgba(37, 99, 235, 0.5)",
-                              "0 0 20px rgba(37, 99, 235, 0.3)",
-                            ],
-                          }}
-                          transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                        >
-                          <motion.div
-                            className="w-[92px] h-[92px] rounded-full bg-white dark:bg-slate-900 flex items-center justify-center cursor-pointer"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <motion.div
-                              animate={{
-                                scale: [0.95, 1.05, 0.95],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                              }}
-                            >
-                              <Mic
-                                className="w-8 h-8 text-blue-600 dark:text-blue-400"
-                                strokeWidth={1.5}
-                              />
-                            </motion.div>
-                          </motion.div>
-                        </motion.div>
+                        <motion.div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-2xl z-10"></motion.div>
 
                         {/* Pulse effects - Optimized for performance */}
                         {[...Array(2)].map((_, i) => (
@@ -676,7 +625,7 @@ function App() {
                             transition={{
                               duration: 4,
                               repeat: Infinity,
-                              ease: "easeInOut",
+                              ease: [0.4, 0, 0.2, 1],
                               delay: i * 0.7,
                             }}
                           />
@@ -699,31 +648,8 @@ function App() {
                   <div className="relative mt-44">
                     {/* Background decorative elements */}
                     <div className="absolute inset-0 -z-10 overflow-hidden">
-                      <motion.div
-                        className="absolute -top-20 -left-10 w-64 h-64 rounded-full bg-blue-500/10 dark:bg-blue-500/5 blur-3xl"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.3, 0.5, 0.3],
-                        }}
-                        transition={{
-                          duration: 8,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                      <motion.div
-                        className="absolute -bottom-20 -right-10 w-64 h-64 rounded-full bg-cyan-500/10 dark:bg-cyan-500/5 blur-3xl"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.3, 0.5, 0.3],
-                        }}
-                        transition={{
-                          duration: 8,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: 2,
-                        }}
-                      />
+                      <motion.div className="absolute -top-20 -left-10 w-64 h-64 rounded-full bg-blue-500/10 dark:bg-blue-500/5 blur-3xl"></motion.div>
+                      <motion.div className="absolute -bottom-20 -right-10 w-64 h-64 rounded-full bg-cyan-500/10 dark:bg-cyan-500/5 blur-3xl"></motion.div>
                     </div>
 
                     {/* Section heading */}
@@ -743,7 +669,7 @@ function App() {
                     </motion.div>
 
                     {/* Features cards - redesigned with staggered animation */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                       {[
                         {
                           icon: Shield,
@@ -755,13 +681,22 @@ function App() {
                           delay: 0,
                         },
                         {
+                          icon: VolumeX,
+                          label: "Smart Audio Control",
+                          desc: "Automatically mutes system audio during recording to prevent interference and ensure crystal-clear voice capture.",
+                          color: "from-purple-500 to-purple-600",
+                          bgColor:
+                            "from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20",
+                          delay: 0.1,
+                        },
+                        {
                           icon: Cpu,
                           label: "AI-Powered",
                           desc: "Advanced Whisper AI model delivers industry-leading accuracy for crystal-clear transcriptions in any environment.",
                           color: "from-cyan-500 to-cyan-600",
                           bgColor:
                             "from-cyan-50 to-cyan-100 dark:from-cyan-900/20 dark:to-cyan-800/20",
-                          delay: 0.15,
+                          delay: 0.2,
                         },
                         {
                           icon: Zap,
@@ -785,7 +720,7 @@ function App() {
                             {/* Gradient background */}
                             <div
                               className={`absolute inset-0 bg-gradient-to-br ${item.bgColor} opacity-40 dark:opacity-30 -z-10`}
-                            />
+                            ></div>
 
                             {/* Subtle light beams */}
                             {[...Array(3)].map((_, index) => {
@@ -821,10 +756,10 @@ function App() {
                                   transition={{
                                     duration: duration,
                                     repeat: Infinity,
-                                    ease: "easeInOut",
+                                    ease: [0.4, 0, 0.2, 1],
                                     delay: delay,
                                   }}
-                                />
+                                ></motion.div>
                               );
                             })}
 
@@ -836,9 +771,9 @@ function App() {
                                 transition={{
                                   duration: 6,
                                   repeat: Infinity,
-                                  ease: "easeInOut",
+                                  ease: [0.4, 0, 0.2, 1],
                                 }}
-                              />
+                              ></motion.div>
                               <div
                                 className={`relative w-16 h-16 rounded-full bg-gradient-to-r ${item.color} flex items-center justify-center shadow-lg`}
                               >
@@ -867,7 +802,7 @@ function App() {
                               y: 4,
                               transition: { duration: 0.3 },
                             }}
-                          />
+                          ></motion.div>
                         </motion.div>
                       ))}
                     </div>
@@ -967,9 +902,9 @@ function App() {
                             transition={{
                               duration: 2,
                               repeat: Infinity,
-                              ease: "easeInOut",
+                              ease: [0.4, 0, 0.2, 1],
                             }}
-                          />
+                          ></motion.div>
                         </div>
                         <span className="ml-3 text-slate-800 dark:text-white font-light select-none text-sm">
                           Recording...
@@ -1057,7 +992,7 @@ function App() {
                             className="inline-block w-1 h-8 bg-slate-500 dark:bg-slate-300 ml-1 align-middle"
                             animate={{ opacity: [1, 0, 1] }}
                             transition={{ duration: 1, repeat: Infinity }}
-                          />
+                          ></motion.span>
                         </motion.p>
                       </div>
                     </motion.div>
@@ -1136,27 +1071,8 @@ function App() {
         <div className="text-center mt-2 mb-8">
           <div className="relative inline-flex flex-col items-center">
             {/* Softer floating elements with larger blur */}
-            <motion.div
-              className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gradient-to-br from-blue-400/10 to-cyan-300/10 dark:from-blue-400/5 dark:to-cyan-300/5 blur-[80px]"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.4, 0.3],
-              }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-gradient-to-tr from-cyan-400/10 to-blue-300/10 dark:from-cyan-400/5 dark:to-blue-300/5 blur-[80px]"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.4, 0.3],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 4,
-              }}
-            />
+            <motion.div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gradient-to-br from-blue-400/10 to-cyan-300/10 dark:from-blue-400/5 dark:to-cyan-300/5 blur-[80px]"></motion.div>
+            <motion.div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-gradient-to-tr from-cyan-400/10 to-blue-300/10 dark:from-cyan-400/5 dark:to-blue-300/5 blur-[80px]"></motion.div>
 
             {/* Main card with softer styling */}
             <div className="relative bg-white/70 dark:bg-slate-900/70 backdrop-blur-md rounded-[28px] p-10 shadow-lg border border-blue-100/30 dark:border-blue-900/20 max-w-lg overflow-hidden">
@@ -1186,24 +1102,24 @@ function App() {
                   className="inline-block"
                   whileHover={{
                     y: -3,
-                    transition: { duration: 0.3, ease: "easeOut" },
+                    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
                   }}
                 >
                   <a
-                    href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.6/FreeWhisper.dmg"
+                    href="https://github.com/furkanksl/FreeWhisper/releases/download/0.0.7/FreeWhisper.dmg"
                     className="group cursor-pointer"
                   >
                     <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-[1px] rounded-full">
                       <div className="flex items-center gap-3 bg-white dark:bg-slate-900 rounded-full px-8 py-3.5 group-hover:bg-opacity-0 group-hover:dark:bg-opacity-0 transition-all duration-300">
                         <svg
                           viewBox="0 0 24 24"
-                          className="w-6 h-6 text-blue-600 dark:text-blue-400 group-hover:text-white transition-colors duration-300"
+                          className="w-6 h-6 text-blue-600 dark:text-blue-400 dark:group-hover:text-white transition-colors duration-300"
                           fill="currentColor"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09998 22C7.78998 22.05 6.79998 20.68 5.95998 19.47C4.24998 17 2.93998 12.45 4.69998 9.39C5.56998 7.87 7.12998 6.91 8.81998 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.35 4.26 13 3.5Z" />
                         </svg>
-                        <span className="text-slate-800 dark:text-white font-medium group-hover:text-white transition-colors duration-300">
+                        <span className="text-slate-800 dark:text-white font-medium dark:group-hover:text-white transition-colors duration-300">
                           Download for macOS
                         </span>
                       </div>

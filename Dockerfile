@@ -11,7 +11,7 @@ RUN bun install --frozen-lockfile
 # Copy all files
 COPY . .
 
-# Build the application
+# Build the application without type checking
 RUN bun run build
 
 # Use a smaller image for production
