@@ -21,6 +21,16 @@ import {
   Pause,
   Save,
   VolumeX,
+  Monitor,
+  AlignLeft,
+  Copy,
+  Maximize2,
+  ArrowRight,
+  Keyboard,
+  Terminal,
+  Play,
+  Settings,
+  Plus,
 } from "lucide-react";
 
 function App() {
@@ -48,6 +58,7 @@ function App() {
     { icon: Star, value: "98.5%", label: "Accuracy Rate" },
     { icon: Globe, value: "20+", label: "Languages" },
     { icon: Mic, value: "<2s", label: "Response Time" },
+    { icon: Zap, value: "∞", label: "Voice Commands" },
   ];
 
   // Track the recording indicator position between state changes
@@ -235,7 +246,7 @@ function App() {
                 </span>
               </h1>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-slate-700 dark:text-slate-200 max-w-4xl">
-                The Ultimate Free & Private Speech-to-Text Experience
+                New way to communicate with your computer
               </h2>
             </motion.div>
 
@@ -244,10 +255,11 @@ function App() {
               variants={itemVariants}
               className="text-center text-lg text-slate-600 dark:text-slate-300 max-w-2xl mb-10"
             >
-              Transform your voice into text with unprecedented accuracy and
-              complete privacy. Built on advanced AI, runs entirely on your
-              device, automatically mutes system audio during recording, and
-              costs absolutely nothing.
+              Transform your voice into text with high accuracy and control your
+              system with voice commands. Built on advanced AI, runs entirely on
+              your device with complete privacy, automatically mutes system
+              audio during recording, and lets you launch apps, control windows,
+              and execute custom commands - all for free.
             </motion.p>
 
             {/* Feature Pills */}
@@ -259,6 +271,12 @@ function App() {
                 <Lock className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                 <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
                   100% Private
+                </span>
+              </div>
+              <div className="flex items-center gap-2 backdrop-blur-md rounded-full px-4 py-2 border border-purple-200/50 dark:border-purple-700/30">
+                <Mic className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                  Voice Commands
                 </span>
               </div>
               <div className="flex items-center gap-2 backdrop-blur-md rounded-full px-4 py-2 border border-cyan-200/50 dark:border-cyan-700/30">
@@ -283,9 +301,9 @@ function App() {
               {/* Main download button with 3D effect */}
               <div className="relative group mb-6">
                 {/* 3D layers for depth effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-300 delay-75"></div>
-                <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-10 group-hover:opacity-20 transition duration-300 delay-100"></div>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600/80 to-cyan-500/80 rounded-2xl blur opacity-30 group-hover:opacity-40 transition duration-300"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/80 to-cyan-500/80 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300 delay-75"></div>
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600/80 to-cyan-500/80 rounded-2xl blur opacity-10 group-hover:opacity-20 transition duration-300 delay-100"></div>
 
                 {/* Main button */}
                 <a
@@ -325,10 +343,10 @@ function App() {
 
                   {/* Text content */}
                   <div className="text-left">
-                    <div className="text-sm text-slate-600 dark:text-slate-400">
+                    {/* <div className="text-sm text-slate-600 dark:text-slate-400">
                       Download Now
-                    </div>
-                    <div className="text-xl font-bold">FreeWhisper for Mac</div>
+                    </div> */}
+                    <div className="text-xl font-bold">MacOS only</div>
                     <div className="flex items-center mt-1 text-xs text-slate-500 dark:text-slate-400">
                       <span className="flex items-center">
                         <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-1"></span>
@@ -373,6 +391,23 @@ function App() {
                 </a>
               </motion.div>
             </motion.div>
+            {/* Stats - Updated */}
+            <div className="max-w-3xl mx-auto mb-20 mt-40">
+              <div className="bg-white/30 dark:bg-slate-900/30 backdrop-blur-sm rounded-xl p-8 border border-blue-100/50 dark:border-blue-900/50">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  {stats.map((stat, index) => (
+                    <div key={index} className="text-center">
+                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">
+                        {stat.value}
+                      </div>
+                      <div className="text-sm text-slate-600 dark:text-slate-400">
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             {/* Main Content Area - Completely Different Approach */}
             <motion.div variants={itemVariants} className="w-full mb-16">
@@ -380,275 +415,12 @@ function App() {
               <div className="max-w-5xl mx-auto mb-20">
                 <div className="relative">
                   {/* 3D-style layered interface - Enhanced */}
-                  <div className="flex flex-col md:flex-row items-center gap-y-10">
-                    {/* Left side: Floating cards - Enhanced */}
-                    <div className="w-full md:w-1/2 relative h-[450px] mt-28">
-                      {/* Background elements */}
-                      <div className="absolute top-5 right-0 w-4/5 h-4/5 bg-gradient-to-br from-blue-600/70 to-cyan-600/70 rounded-3xl transform rotate-6 shadow-xl"></div>
-                      <motion.div className="absolute -bottom-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-full blur-xl"></motion.div>
-
-                      {/* Main card - Enhanced */}
-                      <motion.div
-                        className="absolute top-10 right-5 w-[85%] bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-6 z-10 border border-slate-200/50 dark:border-slate-700/50"
-                        initial={{ y: 20, opacity: 0, rotateZ: 6 }}
-                        animate={{ y: 0, opacity: 1, rotateZ: 0 }}
-                        transition={{ duration: 0.7, type: "spring" }}
-                      >
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center">
-                            <div className="w-8 h-8 rounded-md bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
-                              <Mic className="w-4 h-4 text-white" />
-                            </div>
-                            <span className="ml-2 font-medium text-slate-800 dark:text-white">
-                              Voice Recording
-                            </span>
-                          </div>
-                          <div className="flex items-center">
-                            <span className="text-xs text-slate-500 dark:text-slate-400 mr-2">
-                              00:24
-                            </span>
-                            <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-                          </div>
-                        </div>
-
-                        {/* Waveform - Enhanced */}
-                        <div className="flex items-end h-16 space-x-1 mb-6 bg-slate-50/50 dark:bg-slate-800/50 rounded-lg p-3">
-                          {[...Array(48)].map((_, i) => {
-                            // Create a more natural looking waveform pattern
-                            const baseHeight = 10;
-                            const maxVariation = 25;
-                            const position = i / 32;
-                            const pattern =
-                              Math.sin(position * Math.PI * 4) *
-                              Math.sin(position * Math.PI * 2.5);
-                            const height =
-                              baseHeight + Math.abs(pattern) * maxVariation;
-
-                            return (
-                              <motion.div
-                                key={i}
-                                className={`w-1 ${
-                                  i % 5 === 0
-                                    ? "bg-blue-500"
-                                    : i % 3 === 0
-                                    ? "bg-cyan-500"
-                                    : "bg-gradient-to-t from-blue-500 to-cyan-500"
-                                } rounded-full`}
-                                style={{ height: `${height}px` }}
-                                animate={{
-                                  height: [
-                                    `${height}px`,
-                                    `${height + (Math.random() * 10 - 5)}px`,
-                                    `${height}px`,
-                                  ],
-                                  opacity:
-                                    i % 3 === 0 ? [0.7, 1, 0.7] : undefined,
-                                }}
-                                transition={{
-                                  duration: 1.5 + Math.random(),
-                                  repeat: Infinity,
-                                  ease: [0.4, 0, 0.2, 1],
-                                  delay: i * 0.03,
-                                }}
-                              />
-                            );
-                          })}
-                        </div>
-
-                        <div className="flex justify-between items-center">
-                          <p className="text-slate-700 dark:text-slate-300 text-sm">
-                            "Transform your voice into text..."
-                          </p>
-                          <motion.div
-                            className="w-8 h-8 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center"
-                            whileHover={{
-                              scale: 1.1,
-                              backgroundColor: "rgba(59, 130, 246, 0.2)",
-                            }}
-                          >
-                            <Pause className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                          </motion.div>
-                        </div>
-                      </motion.div>
-
-                      {/* Secondary card - Enhanced */}
-                      <motion.div
-                        className="absolute bottom-10 left-5 w-[80%] bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-6 z-20 border border-slate-200/50 dark:border-slate-700/50"
-                        initial={{ y: 20, opacity: 0, rotateZ: -3 }}
-                        animate={{ y: 0, opacity: 1, rotateZ: 0 }}
-                        transition={{
-                          duration: 0.7,
-                          delay: 0.2,
-                          type: "spring",
-                        }}
-                      >
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center">
-                            <div className="w-6 h-6 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">
-                              <FileText className="w-3 h-3 text-white" />
-                            </div>
-                            <span className="ml-2 text-sm font-medium text-slate-800 dark:text-white">
-                              Transcription
-                            </span>
-                          </div>
-                          <Badge className="bg-green-500/10 text-green-600 dark:bg-green-500/20 dark:text-green-400 hover:bg-green-500/20">
-                            99% Accurate
-                          </Badge>
-                        </div>
-
-                        <div className="bg-slate-50/80 dark:bg-slate-800/80 rounded-lg p-4 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50">
-                          <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
-                            Transform your voice into text with unmatched
-                            accuracy and privacy.
-                            <motion.span
-                              className="inline-block w-0.5 h-4 bg-blue-500 ml-1 align-middle"
-                              animate={{ opacity: [1, 0, 1] }}
-                              transition={{ duration: 1, repeat: Infinity }}
-                            />
-                          </p>
-                        </div>
-
-                        <div className="flex justify-end mt-3">
-                          <motion.button
-                            className="text-xs text-blue-600 dark:text-blue-400 flex items-center"
-                            whileHover={{ scale: 1.05 }}
-                          >
-                            <Save className="w-3 h-3 mr-1" /> Save
-                          </motion.button>
-                        </div>
-                      </motion.div>
-                    </div>
-
-                    {/* Right side: Interactive 3D element - Enhanced */}
-                    <div className="w-full md:w-1/2 h-[450px] flex items-center justify-center">
-                      <div className="relative w-72 h-72">
-                        {/* Background glow */}
-                        <motion.div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 rounded-full bg-gradient-to-r  blur-xl"></motion.div>
-
-                        {/* Orbiting elements - Fixed positioning with lines pointing to center */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          {[...Array(3)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              className="absolute w-full h-full"
-                              style={{
-                                width: "100%",
-                                height: "100%",
-                                transformOrigin: "center",
-                              }}
-                              animate={{
-                                rotate: [0, 360],
-                              }}
-                              transition={{
-                                duration: 25,
-                                repeat: Infinity,
-                                ease: "linear",
-                                repeatType: "loop",
-                              }}
-                            >
-                              <motion.div
-                                className="absolute"
-                                style={{
-                                  top: `${
-                                    50 - Math.sin(i * ((2 * Math.PI) / 3)) * 40
-                                  }%`,
-                                  left: `${
-                                    50 + Math.cos(i * ((2 * Math.PI) / 3)) * 40
-                                  }%`,
-                                  transform: "translate(-50%, -50%)",
-                                }}
-                              >
-                                <div className="relative w-10 h-10 rounded-full bg-gradient-to-r dark:from-blue-700 dark:to-cyan-700 from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg z-40">
-                                  {i === 0 ? (
-                                    <Shield
-                                      className="w-5 h-5 text-white"
-                                      strokeWidth={1.5}
-                                    />
-                                  ) : i === 1 ? (
-                                    <Cpu
-                                      className="w-5 h-5 text-white"
-                                      strokeWidth={1.5}
-                                    />
-                                  ) : (
-                                    <Zap
-                                      className="w-5 h-5 text-white"
-                                      strokeWidth={1.5}
-                                    />
-                                  )}
-
-                                  {/* Line pointing to center */}
-                                  <div
-                                    className="absolute bg-gradient-to-b from-blue-500/50 to-transparent w-[1px]"
-                                    style={{
-                                      height: "100px",
-                                      left: "50%",
-                                      top: "50%",
-                                      transformOrigin: "top",
-                                      transform: `translateX(-50%) rotate(${
-                                        Math.atan2(
-                                          50 -
-                                            Math.sin(i * ((2 * Math.PI) / 3)) *
-                                              40 -
-                                            50,
-                                          50 +
-                                            Math.cos(i * ((2 * Math.PI) / 3)) *
-                                              40 -
-                                            50
-                                        ) *
-                                          (180 / Math.PI) +
-                                        90
-                                      }deg)`,
-                                    }}
-                                  />
-                                </div>
-                              </motion.div>
-                            </motion.div>
-                          ))}
-                        </div>
-
-                        {/* Central element - Enhanced */}
-                        <motion.div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-2xl z-10"></motion.div>
-
-                        {/* Pulse effects - Optimized for performance */}
-                        {[...Array(2)].map((_, i) => (
-                          <motion.div
-                            key={i}
-                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-500/30 dark:border-blue-400/30"
-                            style={{
-                              width: 36 * (i + 1) + "%",
-                              height: 36 * (i + 1) + "%",
-                            }}
-                            animate={{
-                              scale: [1, 1.1, 1],
-                              opacity: [0.3, 0.1, 0.3],
-                            }}
-                            transition={{
-                              duration: 4,
-                              repeat: Infinity,
-                              ease: [0.4, 0, 0.2, 1],
-                              delay: i * 0.7,
-                            }}
-                          />
-                        ))}
-
-                        {/* Floating labels */}
-                        <motion.div
-                          className="absolute -top-4 -right-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm px-3 py-1 rounded-full shadow-md border border-blue-100/50 dark:border-blue-900/50 text-xs font-medium text-blue-600 dark:text-blue-400"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.8 }}
-                        >
-                          Whisper AI
-                        </motion.div>
-                      </div>
-                    </div>
-                  </div>
 
                   {/* Bottom feature highlight - Redesigned */}
                   <div className="relative mt-44">
                     {/* Background decorative elements */}
                     <div className="absolute inset-0 -z-10 overflow-hidden">
-                      <motion.div className="absolute -top-20 -left-10 w-64 h-64 rounded-full bg-blue-500/10 dark:bg-blue-500/5 blur-3xl"></motion.div>
+                      {/* <motion.div className="absolute -top-20 -left-10 w-64 h-64 rounded-full bg-blue-500/10 dark:bg-blue-500/5 blur-3xl"></motion.div> */}
                       <motion.div className="absolute -bottom-20 -right-10 w-64 h-64 rounded-full bg-cyan-500/10 dark:bg-cyan-500/5 blur-3xl"></motion.div>
                     </div>
 
@@ -674,34 +446,34 @@ function App() {
                         {
                           icon: Shield,
                           label: "Privacy First",
-                          desc: "Your audio never leaves your device, ensuring complete confidentiality and security for all your transcriptions.",
+                          desc: "Your audio never leaves your device, ensuring complete confidentiality and security for all your transcriptions and voice commands.",
                           color: "from-blue-500 to-blue-600",
                           bgColor:
                             "from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20",
                           delay: 0,
                         },
                         {
-                          icon: VolumeX,
-                          label: "Smart Audio Control",
-                          desc: "Automatically mutes system audio during recording to prevent interference and ensure crystal-clear voice capture.",
+                          icon: Mic,
+                          label: "Voice Commands",
+                          desc: "Control your system with natural voice commands. Launch apps, align windows, copy text, and execute custom shell commands effortlessly.",
                           color: "from-purple-500 to-purple-600",
                           bgColor:
                             "from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20",
                           delay: 0.1,
                         },
                         {
-                          icon: Cpu,
-                          label: "AI-Powered",
-                          desc: "Advanced Whisper AI model delivers industry-leading accuracy for crystal-clear transcriptions in any environment.",
+                          icon: VolumeX,
+                          label: "Smart Audio Control",
+                          desc: "Automatically mutes system audio during recording to prevent interference and ensure crystal-clear voice capture for both transcription and commands.",
                           color: "from-cyan-500 to-cyan-600",
                           bgColor:
                             "from-cyan-50 to-cyan-100 dark:from-cyan-900/20 dark:to-cyan-800/20",
                           delay: 0.2,
                         },
                         {
-                          icon: Zap,
-                          label: "Lightning Fast",
-                          desc: "Fast speech-to-text processing with excellent accuracy, perfect for meetings, interviews, lectures, and more.",
+                          icon: Cpu,
+                          label: "AI-Powered",
+                          desc: "Advanced Whisper AI model delivers industry-leading accuracy for crystal-clear transcriptions and precise voice command recognition.",
                           color: "from-blue-400 to-cyan-500",
                           bgColor:
                             "from-blue-50 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-800/20",
@@ -810,7 +582,77 @@ function App() {
                 </div>
               </div>
 
-              {/* Recording Indicators Showcase - NEW SECTION */}
+              {/* Voice Commands Showcase - Simple & Clean */}
+              <div className="max-w-4xl mx-auto mb-20 mt-40">
+                {/* Section Header */}
+                <motion.div
+                  className="text-center mb-12"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700 bg-clip-text text-transparent inline-block mb-3">
+                    Voice Commands
+                  </h2>
+                  <p className="text-slate-600 dark:text-slate-300 max-w-xl mx-auto">
+                    Control your system naturally with voice. Just speak and
+                    watch it happen.
+                  </p>
+                </motion.div>
+
+                {/* Simple Command Grid */}
+                <motion.div
+                  className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  {[
+                    { command: "Open Safari", category: "Launch Apps" },
+                    { command: "Align left", category: "Window Control" },
+                    { command: "Copy all", category: "Quick Actions" },
+                    { command: "Make fullscreen", category: "Window Control" },
+                    { command: "Save file", category: "Quick Actions" },
+                    { command: "Lock screen", category: "System Control" },
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-center justify-between p-4 bg-white/50 dark:bg-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                    >
+                      <div>
+                        <p className="font-medium text-slate-800 dark:text-white">
+                          "{item.command}"
+                        </p>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                          {item.category}
+                        </p>
+                      </div>
+                      <Mic className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                    </motion.div>
+                  ))}
+                </motion.div>
+
+                {/* Simple CTA */}
+                {/* <motion.div
+                  className="text-center mt-12"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                >
+                  <p className="text-slate-600 dark:text-slate-400 text-sm">
+                    Press{" "}
+                    <kbd className="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs">
+                      ⌥ + `
+                    </kbd>{" "}
+                    to start
+                  </p>
+                </motion.div> */}
+              </div>
+
+              {/* Recording Indicators Showcase - Updated */}
               <div className="max-w-5xl mx-auto mb-20 mt-40">
                 <motion.div
                   className="text-center mb-12"
@@ -819,11 +661,11 @@ function App() {
                   transition={{ duration: 0.5 }}
                 >
                   <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700 bg-clip-text text-transparent inline-block mb-3">
-                    Intuitive User Experience
+                    Seamless Voice Interaction
                   </h2>
                   <p className="text-slate-600 dark:text-slate-300 max-w-xl mx-auto">
-                    Elegant interface with keyboard shortcuts for seamless
-                    control
+                    Elegant interface with keyboard shortcuts for both
+                    transcription and voice commands
                   </p>
                 </motion.div>
 
@@ -1039,29 +881,11 @@ function App() {
                     <kbd className="px-1.5 py-0.5 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded">
                       `
                     </kbd>{" "}
-                    to start recording, then again to transcribe. The recording
-                    indicator can be dragged around. All processing happens
-                    locally on your device.
+                    to start recording for transcription or voice commands. The
+                    recording indicator can be dragged anywhere. All processing
+                    happens locally on your device for complete privacy.
                   </p>
                 </motion.div>
-              </div>
-
-              {/* Stats - Minimal Bar */}
-              <div className="max-w-2xl mx-auto mb-20 mt-40">
-                <div className="bg-white/30 dark:bg-slate-900/30 backdrop-blur-sm rounded-xl p-8 border border-blue-100/50 dark:border-blue-900/50">
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-                    {stats.map((stat, index) => (
-                      <div key={index} className="text-center">
-                        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">
-                          {stat.value}
-                        </div>
-                        <div className="text-sm text-slate-600 dark:text-slate-400">
-                          {stat.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -1071,13 +895,13 @@ function App() {
         <div className="text-center mt-2 mb-8">
           <div className="relative inline-flex flex-col items-center">
             {/* Softer floating elements with larger blur */}
-            <motion.div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gradient-to-br from-blue-400/10 to-cyan-300/10 dark:from-blue-400/5 dark:to-cyan-300/5 blur-[80px]"></motion.div>
-            <motion.div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-gradient-to-tr from-cyan-400/10 to-blue-300/10 dark:from-cyan-400/5 dark:to-blue-300/5 blur-[80px]"></motion.div>
+            {/* <motion.div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gradient-to-br from-blue-400/10 to-cyan-300/10 dark:from-blue-400/5 dark:to-cyan-300/5 blur-[80px]"></motion.div>
+            <motion.div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-gradient-to-tr from-cyan-400/10 to-blue-300/10 dark:from-cyan-400/5 dark:to-blue-300/5 blur-[80px]"></motion.div> */}
 
             {/* Main card with softer styling */}
-            <div className="relative bg-white/70 dark:bg-slate-900/70 backdrop-blur-md rounded-[28px] p-10 shadow-lg border border-blue-100/30 dark:border-blue-900/20 max-w-lg overflow-hidden">
+            <div className="relative p-10 max-w-2xl overflow-hidden">
               {/* Subtle inner gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 to-cyan-50/40 dark:from-blue-900/10 dark:to-cyan-900/10 rounded-[28px] -z-10"></div>
+              {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 to-cyan-50/40 dark:from-blue-900/10 dark:to-cyan-900/10 rounded-[28px] -z-10"></div> */}
 
               {/* Subtle accent lines */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-blue-400/30 dark:via-blue-400/20 to-transparent"></div>
@@ -1090,11 +914,11 @@ function App() {
                 transition={{ duration: 0.6 }}
               >
                 <h3 className="text-[28px] font-bold mb-3 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent inline-block">
-                  Ready to Experience FreeWhisper?
+                  Ready to Control Everything with Your Voice?
                 </h3>
                 <p className="text-slate-600 dark:text-slate-300 mb-8 max-w-md mx-auto">
-                  Transform your voice into text with unmatched accuracy and
-                  privacy, all for free.
+                  Transform your voice into text and commands with unmatched
+                  accuracy and privacy, all for free.
                 </p>
 
                 {/* Download button with softer animation */}
